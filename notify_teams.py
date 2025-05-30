@@ -20,9 +20,9 @@ def create_teams_message(review_data):
     
     # Map review states to badge styles
     badge_styles = {
-        "APPROVED": "Good",
-        "CHANGES_REQUESTED": "Attention",
-        "COMMENTED": "Default"
+        "approved": "Good",
+        "changes_requested": "Attention",
+        "commented": "Default"
     }
     badge_style = badge_styles.get(review_state, "Default")
     
