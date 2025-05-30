@@ -1,0 +1,60 @@
+name: 'Notify PR Reviews Teams Action'
+description: 'Sends pull request review notifications to Microsoft Teams'
+inputs:
+  webhook_url:
+    description: 'Microsoft Teams webhook URL'
+    required: true
+  bot_image_url:
+    description: 'URL of the bot image to display'
+    required: true
+  repo:
+    description: 'Repository name'
+    required: true
+  pr_number:
+    description: 'Pull request number'
+    required: true
+  pr_title:
+    description: 'Pull request title'
+    required: true
+  reviewer:
+    description: 'Username of the reviewer'
+    required: true
+  review_state:
+    description: 'State of the review (APPROVED, CHANGES_REQUESTED, COMMENTED)'
+    required: true
+  global_comment:
+    description: 'Global comment from the reviewer'
+    required: true
+  comments_count:
+    description: 'Number of comments in the review'
+    required: true
+  head_ref:
+    description: 'Head branch reference'
+    required: true
+  base_ref:
+    description: 'Base branch reference'
+    required: true
+  event:
+    description: 'Review event type (submitted, edited, dismissed)'
+    required: true
+  pr_url:
+    description: 'URL to the pull request'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    TEAMS_WEBHOOK_URL: ${{ inputs.webhook_url }}
+    BOT_IMAGE_URL: ${{ inputs.bot_image_url }}
+    REPO: ${{ inputs.repo }}
+    PR_NUMBER: ${{ inputs.pr_number }}
+    PR_TITLE: ${{ inputs.pr_title }}
+    REVIEWER: ${{ inputs.reviewer }}
+    REVIEW_STATE: ${{ inputs.review_state }}
+    GLOBAL_COMMENT: ${{ inputs.global_comment }}
+    COMMENTS_COUNT: ${{ inputs.comments_count }}
+    HEAD_REF: ${{ inputs.head_ref }}
+    BASE_REF: ${{ inputs.base_ref }}
+    EVENT: ${{ inputs.event }}
+    PR_URL: ${{ inputs.pr_url }} 
